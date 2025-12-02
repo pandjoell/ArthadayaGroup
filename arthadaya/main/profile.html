@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profil Pengguna — Arthadaya</title>
+    <meta name="description" content="Kelola profil dan lihat produk favorit Anda di Arthadaya." />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: "#F9F1E7",
+                            100: "#F9F1E7",
+                            200: "#E5E5E5",
+                            300: "#E5E5E5",
+                            400: "#B88E2F",
+                            500: "#B88E2F",
+                            600: "#B88E2F",
+                            700: "#333",
+                            800: "#333",
+                            900: "#333"
+                        },
+                    },
+                    boxShadow: {
+                        soft: "0 10px 30px rgba(0,0,0,0.08)",
+                        glass: "0 8px 32px rgba(0,0,0,0.1)"
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass {
+            background: rgba(255, 255, 255, .8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .tab-active { 
+            border-bottom: 3px solid #B88E2F; 
+            color: #B88E2F; 
+            position: relative;
+        }
+        .tab-active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #B88E2F, #F9F1E7);
+        }
+        .tab-inactive { color: #6B7280; }
+        .product-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .product-card img {
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(184,142,47,0.1) 0%, rgba(249,241,231,0.5) 100%);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-brand-50 min-h-screen">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-[#E5E5E5]/50 shadow-soft">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="#" class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=100&h=100&auto=format&fit=crop" 
+                         alt="Arthadaya Logo" 
+                         class="h-10 w-10 rounded-xl shadow-soft"
+                         onerror="this.src='https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=100&h=100&auto=format&fit=crop'">
+                    <span class="text-xl font-extrabold">Arthadaya</span>
+                </a>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="#" class="text-gray-600 hover:text-brand-700 transition-all duration-200">Home</a>
+                    <a href="#" class="text-gray-600 hover:text-brand-700 transition-all duration-200">Shop</a>
+                    <a href="#" class="text-gray-600 hover:text-brand-700 transition-all duration-200">About</a>
+                    <a href="#" class="text-gray-600 hover:text-brand-700 transition-all duration-200">Contact</a>
+                    <a href="#" class="text-gray-600 hover:text-brand-700 transition-all duration-200">FAQ</a>
+                </nav>
+                <div class="hidden md:flex items-center gap-3">
+                    <button class="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-[#E5E5E5] hover:border-brand-600 hover:text-brand-700 transition-all duration-200 shadow-soft">
+                        <i data-feather="search" class="w-4 h-4"></i>
+                        <span>Cari</span>
+                    </button>
+                    <a href="#produk" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-700 text-white hover:bg-brand-800 transition-all duration-200 shadow-soft">
+                        <i data-feather="shopping-bag" class="w-4 h-4"></i>
+                        <span>Belanja</span>
+                    </a>
+                    <a href="#" class="inline-flex items-center justify-center h-10 w-10 rounded-full border-2 border-brand-700/50 hover:border-brand-700 overflow-hidden shadow-soft transition-all duration-200">
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf33534f?q=80&w=100&h=100&auto=format&fit=crop" 
+                             alt="Profile" 
+                             class="h-full w-full object-cover"
+                             onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100&h=100&auto=format&fit=crop'">
+                    </a>
+                </div>
+                <button id="mobileBtn" class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-xl border border-[#E5E5E5] hover:border-brand-600 transition-all duration-200">
+                    <i data-feather="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div id="mobileMenu" class="md:hidden hidden pt-3 pb-4 bg-white/80 backdrop-blur rounded-xl mt-2">
+                <nav class="flex flex-col gap-2">
+                    <a href="#" class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700 transition">Home</a>
+                    <a href="#" class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700 transition">Shop</a>
+                    <a href="#" class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700 transition">About</a>
+                    <a href="#" class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700 transition">Contact</a>
+                    <a href="#" class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700 transition">FAQ</a>
+                    <a href="#" class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700 font-semibold">Profil</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Profil -->
+    <section class="hero-bg py-16 md:py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(184,142,47,0.05)_0%,transparent_70%)]"></div>
+        <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-brand-700 mb-4">Profil Pengguna</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">Kelola informasi akun Anda dengan mudah dan lihat koleksi produk favorit yang telah Anda simpan</p>
+            <div class="flex justify-center gap-4 mt-8">
+                <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/80 rounded-full text-sm text-gray-600 shadow-soft">
+                    <i data-feather="user" class="w-4 h-4"></i>
+                    1 Akun Aktif
+                </span>
+                <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/80 rounded-full text-sm text-gray-600 shadow-soft">
+                    <i data-feather="heart" class="w-4 h-4"></i>
+                    3 Favorit
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="max-w-6xl mx-auto px-4 py-12 mb-16">
+        <!-- Container Utama dengan Glass Effect -->
+        <div class="glass rounded-3xl shadow-glass p-6 md:p-8">
+            <!-- Tabs dengan Layout yang Lebih Baik -->
+            <div class="border-b border-brand-100 mb-8 pb-4">
+                <div class="flex flex-wrap justify-center md:justify-start gap-6 md:gap-0">
+                    <button id="tab-profile" class="tab-active py-2 px-6 font-semibold transition-all duration-200 relative">Profil</button>
+                    <button id="tab-favorites" class="tab-inactive py-2 px-6 font-semibold transition-all duration-200 relative">Favorit</button>
+                </div>
+            </div>
+
+            <!-- Tab Content: Profil -->
+            <div id="content-profile" class="">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Foto Profil Sidebar -->
+                    <div class="lg:col-span-1 flex flex-col items-center lg:items-start space-y-4">
+                        <div class="relative">
+                            <div class="h-32 w-32 rounded-full border-4 border-brand-100 overflow-hidden shadow-soft mx-auto lg:mx-0">
+                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf33534f?q=80&w=200&h=200&auto=format&fit=crop" 
+                                     alt="Foto Profil" 
+                                     class="h-full w-full object-cover"
+                                     onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&h=200&auto=format&fit=crop'">
+                            </div>
+                            <button class="absolute bottom-2 right-2 bg-brand-700 text-white p-2 rounded-full shadow-soft hover:bg-brand-800 transition-all duration-200">
+                                <i data-feather="camera" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <h4 class="text-lg font-semibold text-brand-700">John Doe</h4>
+                            <p class="text-gray-500 text-sm">Pengguna Premium</p>
+                        </div>
+                        <button class="w-full px-4 py-2 bg-brand-700 text-white rounded-xl hover:bg-brand-800 transition-all duration-200 shadow-soft">
+                            Ubah Foto Profil
+                        </button>
+                    </div>
+                    <!-- Informasi Pengguna Main Content -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-gray-600">Nama Lengkap</label>
+                                <p class="text-lg font-semibold text-brand-700">John Doe</p>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-gray-600">Email</label>
+                                <p class="text-lg font-semibold text-brand-700">john.doe@example.com</p>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-gray-600">Nomor Telepon</label>
+                                <p class="text-lg font-semibold text-brand-700">+62 812-3456-7890</p>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-gray-600">Tanggal Bergabung</label>
+                                <p class="text-lg font-semibold text-brand-700">15 Januari 2024</p>
+                            </div>
+                        </div>
+                        <div class="pt-6 border-t border-brand-100">
+                            <h3 class="text-xl font-semibold text-brand-700 mb-4">Alamat Pengiriman</h3>
+                            <div class="bg-brand-50 p-4 rounded-xl">
+                                <p class="text-gray-700">Jl. Contoh No. 123, Kelurahan Sukamaju, Kecamatan Gondomanan, Yogyakarta 55122</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                            <a href="#" class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-700 text-white rounded-xl hover:bg-brand-800 transition-all duration-200 shadow-soft">
+                                <i data-feather="edit" class="w-5 h-5"></i>
+                                Edit Profil
+                            </a>
+                            <a href="#" class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 border border-brand-700 text-brand-700 rounded-xl hover:bg-brand-700 hover:text-white transition-all duration-200 shadow-soft">
+                                <i data-feather="settings" class="w-5 h-5"></i>
+                                Pengaturan Akun
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Favorit -->
+            <div id="content-favorites" class="hidden">
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-2xl font-bold text-brand-700">Produk Favorit (3)</h3>
+                        <a href="#" class="inline-flex items-center gap-2 text-brand-700 hover:text-brand-800 font-medium">
+                            <i data-feather="plus" class="w-4 h-4"></i>
+                            Tambah Favorit Baru
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        <!-- Dummy Produk Favorit 1 -->
+                        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-soft">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=300&h=200&auto=format&fit=crop" 
+                                     alt="Rumah Minimalis" 
+                                     class="w-full h-48 object-cover"
+                                     onerror="this.src='https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=300&h=200&auto=format&fit=crop'">
+                                <div class="absolute top-3 right-3">
+                                    <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold">Favorit</span>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h4 class="font-semibold text-brand-700 text-lg mb-2">Rumah Minimalis Modern</h4>
+                                <p class="text-gray-600 text-sm mb-3">Lokasi: Yogyakarta • 3 Kamar</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-2xl font-bold text-brand-700">Rp 500.000.000</span>
+                                    <span class="bg-brand-100 text-brand-700 px-2 py-1 rounded text-sm">Tersedia</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <a href="#" class="text-brand-700 hover:text-brand-800 text-sm font-medium">Lihat Detail</a>
+                                    <button class="text-red-500 hover:text-red-700 transition-all duration-200">
+                                        <i data-feather="trash-2" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Dummy Produk Favorit 2 -->
+                        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-soft">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=300&h=200&auto=format&fit=crop" 
+                                     alt="Apartemen Mewah" 
+                                     class="w-full h-48 object-cover"
+                                     onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=300&h=200&auto=format&fit=crop'">
+                                <div class="absolute top-3 right-3">
+                                    <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold">Favorit</span>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h4 class="font-semibold text-brand-700 text-lg mb-2">Apartemen Mewah di Kota</h4>
+                                <p class="text-gray-600 text-sm mb-3">Lokasi: Jakarta • 2 Kamar</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-2xl font-bold text-brand-700">Rp 800.000.000</span>
+                                    <span class="bg-brand-100 text-brand-700 px-2 py-1 rounded text-sm">Tersedia</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <a href="#" class="text-brand-700 hover:text-brand-800 text-sm font-medium">Lihat Detail</a>
+                                    <button class="text-red-500 hover:text-red-700 transition-all duration-200">
+                                        <i data-feather="trash-2" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Dummy Produk Favorit 3 -->
+                        <div class="product-card bg-white rounded-2xl overflow-hidden shadow-soft">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1600566752355-35792a6b3df4?q=80&w=300&h=200&auto=format&fit=crop" 
+                                     alt="Tanah Strategis" 
+                                     class="w-full h-48 object-cover"
+                                     onerror="this.src='https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=300&h=200&auto=format&fit=crop'">
+                                <div class="absolute top-3 right-3">
+                                    <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold">Favorit</span>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h4 class="font-semibold text-brand-700 text-lg mb-2">Tanah Strategis Dekat Pusat</h4>
+                                <p class="text-gray-600 text-sm mb-3">Luas: 200 m² • Sertifikat SHM</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-2xl font-bold text-brand-700">Rp 300.000.000</span>
+                                    <span class="bg-brand-100 text-brand-700 px-2 py-1 rounded text-sm">Tersedia</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <a href="#" class="text-brand-700 hover:text-brand-800 text-sm font-medium">Lihat Detail</a>
+                                    <button class="text-red-500 hover:text-red-700 transition-all duration-200">
+                                        <i data-feather="trash-2" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-[#E5E5E5]/50 bg-white/80 backdrop-blur">
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
+                <div>
+                    <div class="flex items-center gap-2 justify-center md:justify-start mb-4">
+                        <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white">A</span>
+                        <span class="text-xl font-extrabold">Arthadaya</span>
+                    </div>
+                    <p class="text-gray-600 text-sm">Properti berkualitas dengan desain minimalis modern untuk hunian impian Anda.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Produk</h4>
+                    <ul class="space-y-2 text-gray-600 text-sm">
+                        <li><a href="#" class="hover:text-brand-700">Rumah</a></li>
+                        <li><a href="#" class="hover:text-brand-700">Apartemen</a></li>
+                        <li><a href="#" class="hover:text-brand-700">Tanah</a></li>
+                        <li><a href="#" class="hover:text-brand-700">Paviliun</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Bantuan</h4>
+                    <ul class="space-y-2 text-gray-600 text-sm">
+                        <li><a href="#" class="hover:text-brand-700">FAQ</a></li>
+                        <li><a href="#" class="hover:text-brand-700">Kontak</a></li>
+                        <li><a href="#" class="hover:text-brand-700">Kebijakan</a></li>
+                        <li><a href="#" class="hover:text-brand-700">Panduan</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Ikuti Kami</h4>
+                    <div class="flex justify-center md:justify-start gap-3">
+                        <a href="#" class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#E5E5E5] hover:border-brand-600 hover:text-brand-700 transition">
+                            <i data-feather="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#E5E5E5] hover:border-brand-600 hover:text-brand-700 transition">
+                            <i data-feather="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#E5E5E5] hover:border-brand-600 hover:text-brand-700 transition">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-[#E5E5E5] mt-8 pt-6 text-center text-sm text-gray-500">
+                <p>© <span id="year"></span> Arthadaya. All rights reserved. Dibuat dengan ❤️ menggunakan Tailwind CSS.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Mobile menu toggle
+        const mbBtn = document.getElementById('mobileBtn');
+        const mbMenu = document.getElementById('mobileMenu');
+        mbBtn?.addEventListener('click', () => {
+            mbMenu.classList.toggle('hidden');
+        });
+
+        // Dynamic year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Tab functionality
+        const tabProfile = document.getElementById('tab-profile');
+        const tabFavorites = document.getElementById('tab-favorites');
+        const contentProfile = document.getElementById('content-profile');
+        const contentFavorites = document.getElementById('content-favorites');
+
+        tabProfile.addEventListener('click', () => {
+            tabProfile.classList.remove('tab-inactive'); tabProfile.classList.add('tab-active');
+            tabFavorites.classList.remove('tab-active'); tabFavorites.classList.add('tab-inactive');
+            contentProfile.classList.remove('hidden');
+            contentFavorites.classList.add('hidden');
+        });
+
+        tabFavorites.addEventListener('click', () => {
+            tabFavorites.classList.remove('tab-inactive'); tabFavorites.classList.add('tab-active');
+            tabProfile.classList.remove('tab-active'); tabProfile.classList.add('tab-inactive');
+            contentFavorites.classList.remove('hidden');
+            contentProfile.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>

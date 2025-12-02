@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Arthadaya — Detail Paviliun Yogyakarta</title>
+    <meta name="description"
+        content="Detail Paviliun Yogyakarta: Paviliun modern dekat Malioboro dengan fasilitas lengkap dan lokasi strategis." />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Custom Tailwind config
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: "#F9F1E7",
+                            100: "#F9F1E7",
+                            200: "#E5E5E5",
+                            300: "#E5E5E5",
+                            400: "#B88E2F",
+                            500: "#B88E2F",
+                            600: "#B88E2F",
+                            700: "#333",
+                            800: "#333",
+                            900: "#333"
+                        },
+                    },
+                    boxShadow: {
+                        soft: "0 10px 30px rgba(0,0,0,0.08)"
+                    },
+                    backgroundImage: {
+                        "grid": "linear-gradient(to right, rgba(0,0,0,.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,.04) 1px, transparent 1px)"
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        }
+
+        /* Subtle glass effect */
+        .glass {
+            background: rgba(255, 255, 255, .7);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Hide scrollbar for overflow-x-auto */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Fade-in animation for images */
+        .image-container img {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05);
+            opacity: 0.95;
+        }
+
+        /* Tab animation */
+        .tab-btn.active {
+            border-bottom: 2px solid #B88E2F;
+            color: #333;
+        }
+
+        .tab-btn:hover:not(.active) {
+            color: #B88E2F;
+            transition: color 0.3s ease;
+        }
+    </style>
+</head>
+
+<body
+    class="text-[#333] bg-[radial-gradient(1200px_600px_at_80%-10%,rgba(184,142,47,0.12),transparent),radial-gradient(900px_500px_at-10%_10%,rgba(184,142,47,0.08),transparent)]">
+
+    <!-- Top Bar -->
+    <div class="w-full bg-brand-900 text-white text-sm">
+        <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
+            <p class="opacity-90">Gratis konsultasi untuk pembelian properti di atas Rp500 juta</p>
+            <a href="shop.html#produk" class="underline hover:no-underline">Lihat Properti Sekarang</a>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <header
+        class="sticky top-0 z-50 bg-white/80 backdrop-blur supports-[backdrop-filter]:glass border-b border-[#E5E5E5]">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="#" class="flex items-center gap-2">
+                    <img src="../../public/images/arthadaya_group.jpg" alt="Arthadaya Logo"
+                        class="h-10 w-10 rounded-xl shadow-soft">
+                    <span class="text-xl font-extrabold tracking-tight">Arthadaya</span>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="index.html" class="text-gray-600 hover:text-brand-700 transition">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-brand-700 transition">Shop</a>
+                    <a href="about.html" class="text-gray-600 hover:text-brand-700 transition">About</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-brand-700 transition">Contact</a>
+                    <a href="#faq" class="text-gray-600 hover:text-brand-700 transition">FAQ</a>
+                </nav>
+
+                <div class="hidden md:flex items-center gap-3">
+                    <button
+                        class="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-[#E5E5E5] hover:border-brand-600 hover:text-brand-700 transition shadow-soft">
+                        <i data-feather="search" class="w-4 h-4"></i>
+                        <span>Cari</span>
+                    </button>
+                    <a href="shop.html#produk"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-700 text-white hover:bg-brand-800 transition shadow-soft">
+                        <i data-feather="shopping-bag" class="w-4 h-4"></i>
+                        <span>Belanja</span>
+                    </a>
+                </div>
+
+                <button id="mobileBtn"
+                    class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-xl border border-[#E5E5E5]">
+                    <i data-feather="menu"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden hidden pt-3 pb-4">
+                <nav class="flex flex-col gap-2">
+                    <a href="index.html"
+                        class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700">Home</a>
+                    <a href="shop.html"
+                        class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700">Shop</a>
+                    <a href="about.html"
+                        class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700">About</a>
+                    <a href="contact.html"
+                        class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700">Contact</a>
+                    <a href="#faq"
+                        class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700">FAQ</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-brand-50 py-4">
+        <div class="text-sm px-6 text-gray-700 rounded-lg shadow-soft flex items-center gap-1 max-w-7xl mx-auto">
+            <a href="index.html"
+                class="text-gray-500 hover:text-brand-700 hover:underline cursor-pointer transition">Home</a>
+            <span class="text-gray-400">&gt;</span>
+            <a href="shop.html"
+                class="text-gray-500 hover:text-brand-700 hover:underline cursor-pointer transition">Shop</a>
+            <span class="text-gray-400">&gt;</span>
+            <span class="text-brand-700 font-semibold">Paviliun Yogyakarta</span>
+        </div>
+    </div>
+
+    <!-- Product Detail -->
+    <section class="px-6 md:px-16 py-10 grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+        <!-- Image Section -->
+        <div class="flex flex-col gap-4 image-container">
+            <!-- Main Image -->
+            <div class="">
+                <img id="mainImage"
+                    src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=600&h=520&auto=format&fit=crop"
+                    class="rounded-2xl border w-full max-h-[520px] object-cover shadow-soft"
+                    alt="Paviliun Yogyakarta" />
+            </div>
+            <!-- Thumbnails -->
+            <div class="flex flex-row flex-wrap gap-3 justify-center">
+                <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=100&h=100&auto=format&fit=crop"
+                    class="w-16 h-16 sm:w-20 sm:h-20 border rounded-lg cursor-pointer hover:opacity-80 transition shadow-soft"
+                    alt="Thumb 1"
+                    onclick="changeMainImage('https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=600&h=520&auto=format&fit=crop')" />
+                <img src="https://images.unsplash.com/photo-1600585152915-d208bec867a1?q=80&w=100&h=100&auto=format&fit=crop"
+                    class="w-16 h-16 sm:w-20 sm:h-20 border rounded-lg cursor-pointer hover:opacity-80 transition shadow-soft"
+                    alt="Thumb 2"
+                    onclick="changeMainImage('https://images.unsplash.com/photo-1600585152915-d208bec867a1?q=80&w=600&h=520&auto=format&fit=crop')" />
+                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=100&h=100&auto=format&fit=crop"
+                    class="w-16 h-16 sm:w-20 sm:h-20 border rounded-lg cursor-pointer hover:opacity-80 transition shadow-soft"
+                    alt="Thumb 3"
+                    onclick="changeMainImage('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=600&h=520&auto=format&fit=crop')" />
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=100&h=100&auto=format&fit=crop"
+                    class="w-16 h-16 sm:w-20 sm:h-20 border rounded-lg cursor-pointer hover:opacity-80 transition shadow-soft"
+                    alt="Thumb 4"
+                    onclick="changeMainImage('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&h=520&auto=format&fit=crop')" />
+            </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="space-y-6 bg-white/80 backdrop-blur supports-[backdrop-filter]:glass p-6 rounded-2xl shadow-soft">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-2 text-brand-700">Paviliun Yogyakarta</h1>
+                <p class="text-2xl font-semibold text-brand-400 mb-3">Rp 900.000.000</p>
+                <span
+                    class="inline-block px-3 py-1 text-xs rounded-full bg-brand-50 text-blue-600 font-semibold">Limited</span>
+            </div>
+
+            <!-- Rating -->
+            <div class="flex items-center mb-4">
+                <div class="flex text-yellow-500">
+                    <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                    <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                    <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                    <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                    <i data-feather="star" class="w-5 h-5"></i>
+                </div>
+                <span class="text-sm text-gray-500 ml-3">4.8 (12 Ulasan)</span>
+            </div>
+
+            <p class="text-gray-600 leading-relaxed">
+                Paviliun modern yang terletak hanya 5 menit dari Malioboro, Yogyakarta. Dengan desain minimalis dan
+                fasilitas lengkap, properti ini ideal untuk hunian sementara atau investasi jangka pendek di kawasan
+                wisata populer.
+            </p>
+
+            <!-- Spesifikasi Properti -->
+            <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <label class="font-semibold text-brand-700 block mb-1">Luas Bangunan</label>
+                        <div class="flex gap-2">
+                            <button
+                                class="px-4 py-2 border rounded-xl hover:bg-brand-50 text-brand-700 transition shadow-soft">120
+                                m²</button>
+                            <button
+                                class="px-4 py-2 border rounded-xl hover:bg-brand-50 text-brand-700 transition shadow-soft">150
+                                m²</button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="font-semibold text-brand-700 block mb-1">Jumlah Kamar</label>
+                        <div class="flex gap-2">
+                            <button
+                                class="px-4 py-2 border rounded-xl hover:bg-brand-50 text-brand-700 transition shadow-soft">2
+                                Kamar</button>
+                            <button
+                                class="px-4 py-2 border rounded-xl hover:bg-brand-50 text-brand-700 transition shadow-soft">3
+                                Kamar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tipe Properti -->
+                <div>
+                    <label class="font-semibold text-brand-700 block mb-2">Tipe Properti</label>
+                    <div class="flex gap-3">
+                        <div
+                            class="flex items-center gap-2 p-3 border rounded-xl cursor-pointer hover:bg-brand-50 transition shadow-soft">
+                            <div class="w-4 h-4 border-2 border-brand-400 rounded-full bg-brand-400"></div>
+                            <span class="text-sm font-medium">Paviliun</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 p-3 border rounded-xl cursor-pointer hover:bg-brand-50 transition shadow-soft">
+                            <div class="w-4 h-4 border-2 rounded-full"></div>
+                            <span class="text-sm font-medium">Rumah</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-4">
+                <div class="flex border rounded-xl overflow-hidden shadow-soft">
+                    <button id="decrement" class="px-4 py-2 hover:bg-brand-50 text-brand-700">-</button>
+                    <span id="quantity" class="px-4 py-2 border-x text-brand-700">1</span>
+                    <button id="increment" class="px-4 py-2 hover:bg-brand-50 text-brand-700">+</button>
+                </div>
+                <a href="contact.html"
+                    class="px-8 py-3 bg-brand-700 text-white rounded-xl hover:bg-brand-800 transition shadow-soft font-semibold flex items-center gap-2">
+                    <i data-feather="phone" class="w-5 h-5"></i>
+                    Hubungi Penjual
+                </a>
+                <button
+                    class="px-6 py-3 border border-brand-700 text-brand-700 rounded-xl hover:bg-brand-50 transition shadow-soft">
+                    + Bandingkan
+                </button>
+            </div>
+
+            <!-- Info Tambahan -->
+            <div class="text-sm text-gray-600 space-y-2 p-4 bg-brand-50 rounded-xl shadow-soft">
+                <p><strong>Kode Properti</strong>: PY001</p>
+                <p><strong>Kategori</strong>: Paviliun</p>
+                <p><strong>Tags</strong>: Yogyakarta, Modern, Investasi, Hunian</p>
+                <p><strong>Bagikan</strong>:
+                    <span class="inline-flex items-center gap-3 ml-2 text-lg">
+                        <a href="#" aria-label="Share" class="hover:text-brand-700 transition"><i
+                                data-feather="share-2"></i></a>
+                        <a href="#" aria-label="Facebook" class="hover:text-brand-700 transition"><i
+                                data-feather="facebook"></i></a>
+                        <a href="#" aria-label="Twitter" class="hover:text-brand-700 transition"><i
+                                data-feather="twitter"></i></a>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tabs -->
+    <div class="px-6 md:px-16 mt-14 bg-white rounded-2xl shadow-soft">
+        <!-- Tabs -->
+        <div class="border-b border-brand-200 mb-8">
+            <div class="flex justify-center">
+                <nav class="flex gap-10 text-base font-medium">
+                    <button class="tab-btn active pb-3 transition duration-200">Deskripsi</button>
+                    <button class="tab-btn pb-3 text-gray-500 transition duration-200">Informasi Tambahan</button>
+                    <button class="tab-btn pb-3 text-gray-500 transition duration-200">
+                        Ulasan <span
+                            class="text-sm align-top bg-brand-50 text-brand-700 px-2 py-1 rounded-full">(12)</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Description Content -->
+        <div class="ml-0 md:ml-10 lg:ml-20 max-w-4xl">
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                Paviliun Yogyakarta ini dirancang dengan gaya minimalis modern, terletak hanya 5 menit dari Malioboro.
+                Properti ini mencakup luas bangunan 120 m² dengan 2 kamar tidur, 1 kamar mandi, ruang tamu terbuka, dan
+                dapur fungsional. Dilengkapi dengan taman kecil dan akses parkir mudah, cocok untuk hunian sementara
+                atau investasi jangka pendek.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Lokasi strategis dekat pusat wisata dan fasilitas umum seperti pasar tradisional, rumah sakit, dan
+                sekolah. Legalitas lengkap dengan SHM dan bebas sengketa. Potensi sewa bulanan hingga Rp 15 juta.
+            </p>
+        </div>
+
+        <!-- Additional Images -->
+        <div class="mt-10 flex justify-center gap-6 flex-wrap">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1600585152915-d208bec867a1?q=80&w=400&h=300&auto=format&fit=crop"
+                    alt="Interior Paviliun" class="rounded-2xl shadow-soft w-full sm:w-1/2 max-w-sm" />
+            </div>
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=400&h=300&auto=format&fit=crop"
+                    alt="Eksterior Paviliun" class="rounded-2xl shadow-soft w-full sm:w-1/2 max-w-sm" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <section class="px-6 md:px-16 mt-20 bg-brand-50 py-12 rounded-2xl shadow-soft">
+        <h3 class="text-3xl font-extrabold text-center text-brand-700 mb-10">Properti Terkait</h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            <!-- Related Product 1 -->
+            <article
+                class="bg-white border border-brand-200 rounded-2xl shadow-soft hover:shadow-lg transition overflow-hidden">
+                <div class="relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=300&h=200&auto=format&fit=crop"
+                        class="w-full h-48 object-cover hover:scale-105 transition" alt="Rumah Minimalis Jakarta" />
+                    <span
+                        class="absolute top-3 left-3 px-2 py-1 text-xs rounded-full bg-white/90 border border-brand-200 text-green-600">Baru</span>
+                </div>
+                <div class="p-4">
+                    <h4 class="font-semibold text-lg text-brand-700 mb-1">Rumah Minimalis Jakarta</h4>
+                    <p class="text-sm text-gray-600 mb-2">Rumah 2 lantai dengan taman luas</p>
+                    <p class="text-lg font-bold text-brand-400 mb-2">Rp 2.500.000.000</p>
+                    <a href="#" class="text-xs text-brand-700 hover:underline">Lihat Detail</a>
+                </div>
+            </article>
+
+            <!-- Related Product 2 -->
+            <article
+                class="bg-white border border-brand-200 rounded-2xl shadow-soft hover:shadow-lg transition overflow-hidden">
+                <div class="relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=300&h=200&auto=format&fit=crop"
+                        class="w-full h-48 object-cover hover:scale-105 transition" alt="Villa Modern Bali" />
+                </div>
+                <div class="p-4">
+                    <h4 class="font-semibold text-lg text-brand-700 mb-1">Villa Modern Bali</h4>
+                    <p class="text-sm text-gray-600 mb-2">Villa tropis dengan kolam renang</p>
+                    <p class="text-lg font-bold text-brand-400 mb-2">Rp 4.500.000.000</p>
+                    <a href="#" class="text-xs text-brand-700 hover:underline">Lihat Detail</a>
+                </div>
+            </article>
+
+            <!-- Related Product 3 -->
+            <article
+                class="bg-white border border-brand-200 rounded-2xl shadow-soft hover:shadow-lg transition overflow-hidden">
+                <div class="relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=300&h=200&auto=format&fit=crop"
+                        class="w-full h-48 object-cover hover:scale-105 transition" alt="Apartemen Jakarta Selatan" />
+                    <span
+                        class="absolute top-3 left-3 px-2 py-1 text-xs rounded-full bg-white/90 border border-brand-200 text-red-600">Promo</span>
+                </div>
+                <div class="p-4">
+                    <h4 class="font-semibold text-lg text-brand-700 mb-1">Apartemen Jakarta Selatan</h4>
+                    <p class="text-sm text-gray-600 mb-2">Unit 2 kamar dengan fasilitas gym</p>
+                    <p class="text-lg font-bold text-brand-400 mb-2">Rp 1.800.000.000</p>
+                    <a href="#" class="text-xs text-brand-700 hover:underline">Lihat Detail</a>
+                </div>
+            </article>
+
+            <!-- Related Product 4 -->
+            <article
+                class="bg-white border border-brand-200 rounded-2xl shadow-soft hover:shadow-lg transition overflow-hidden">
+                <div class="relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1628624747181-6d35e0763b7e?q=80&w=300&h=200&auto=format&fit=crop"
+                        class="w-full h-48 object-cover hover:scale-105 transition" alt="Tanah Kavling Bandung" />
+                </div>
+                <div class="p-4">
+                    <h4 class="font-semibold text-lg text-brand-700 mb-1">Tanah Kavling Bandung</h4>
+                    <p class="text-sm text-gray-600 mb-2">Lahan strategis untuk investasi</p>
+                    <p class="text-lg font-bold text-brand-400 mb-2">Rp 1.200.000.000</p>
+                    <a href="#" class="text-xs text-brand-700 hover:underline">Lihat Detail</a>
+                </div>
+            </article>
+        </div>
+
+        <div class="flex justify-center mt-10">
+            <a href="shop.html"
+                class="px-8 py-3 rounded-xl border border-brand-700 text-brand-700 hover:bg-brand-700 hover:text-white transition shadow-soft font-semibold">
+                Lihat Lebih Banyak
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-[#E5E5E5] bg-white mt-16">
+        <div class="max-w-7xl mx-auto px-4 py-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center gap-2">
+                    <span
+                        class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white">F</span>
+                    <span class="text-xl font-extrabold">Arthadaya</span>
+                </div>
+                <p class="mt-3 text-gray-600">Menciptakan hunian nyaman dengan properti minimalis dan kualitas maksimal.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-3">Kategori</h4>
+                <ul class="space-y-2 text-gray-600">
+                    <li><a href="shop.html#produk" class="hover:text-brand-700">Rumah</a></li>
+                    <li><a href="shop.html#produk" class="hover:text-brand-700">Tanah</a></li>
+                    <li><a href="shop.html#produk" class="hover:text-brand-700">Paviliun</a></li>
+                    <li><a href="shop.html#produk" class="hover:text-brand-700">Apartemen</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-3">Bantuan</h4>
+                <ul class="space-y-2 text-gray-600">
+                    <li><a href="#faq" class="hover:text-brand-700">FAQ</a></li>
+                    <li><a href="#" class="hover:text-brand-700">Kebijakan Pembelian</a></li>
+                    <li><a href="#" class="hover:text-brand-700">Konsultasi</a></li>
+                    <li><a href="contact.html" class="hover:text-brand-700">Kontak</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-3">Ikuti Kami</h4>
+                <div class="flex items-center gap-3 text-gray-600">
+                    <a href="#" aria-label="Instagram"
+                        class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#E5E5E5] hover:border-brand-600 hover:text-brand-700 transition">
+                        <i data-feather="instagram"></i>
+                    </a>
+                    <a href="#" aria-label="Facebook"
+                        class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#E5E5E5] hover:border-brand-600 hover:text-brand-700 transition">
+                        <i data-feather="facebook"></i>
+                    </a>
+                    <a href="#" aria-label="Twitter"
+                        class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#E5E5E5] hover:border-brand-600 hover:text-brand-700 transition">
+                        <i data-feather="twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-[#E5E5E5]">
+            <div
+                class="max-w-7xl mx-auto px-4 py-6 text-sm text-gray-500 flex flex-col md:flex-row items-center justify-between gap-2">
+                <p>© <span id="year"></span> Arthadaya. All rights reserved.</p>
+                <p>Dibuat dengan <span class="text-brand-700 font-semibold">Tailwind CSS</span>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        feather.replace();
+
+        // Mobile menu toggle
+        const mbBtn = document.getElementById('mobileBtn');
+        const mbMenu = document.getElementById('mobileMenu');
+        mbBtn?.addEventListener('click', () => {
+            mbMenu.classList.toggle('hidden');
+        });
+
+        // Tahun dinamis di footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Change main image on thumbnail click
+        function changeMainImage(src) {
+            document.getElementById('mainImage').src = src;
+        }
+
+        // Quantity controls
+        const decrementBtn = document.getElementById('decrement');
+        const incrementBtn = document.getElementById('increment');
+        const quantitySpan = document.getElementById('quantity');
+
+        decrementBtn.addEventListener('click', () => {
+            let qty = parseInt(quantitySpan.textContent);
+            if (qty > 1) {
+                quantitySpan.textContent = qty - 1;
+            }
+        });
+
+        incrementBtn.addEventListener('click', () => {
+            let qty = parseInt(quantitySpan.textContent);
+            quantitySpan.textContent = qty + 1;
+        });
+
+        // Tab switching
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // Tambahkan logika untuk mengganti konten tab di sini jika diperlukan
+            });
+        });
+    </script>
+</body>
+
+</html>

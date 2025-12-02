@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Arthadaya — FAQ</title>
+    <meta name="description"
+        content="Pertanyaan yang sering diajukan tentang properti minimalis modern dari Arthadaya. Temukan jawaban tentang pembelian, legalitas, dan layanan kami." />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Custom Tailwind config
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: "#F9F1E7",
+                            100: "#F9F1E7",
+                            200: "#E5E5E5",
+                            300: "#E5E5E5",
+                            400: "#B88E2F",
+                            500: "#B88E2F",
+                            600: "#B88E2F",
+                            700: "#333",
+                            800: "#333",
+                            900: "#333"
+                        },
+                    },
+                    boxShadow: {
+                        soft: "0 10px 30px rgba(0,0,0,0.08)"
+                    },
+                    backgroundImage: {
+                        "grid": "linear-gradient(to right, rgba(0,0,0,.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,.04) 1px, transparent 1px)"
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        }
+
+        /* Subtle glass effect */
+        .glass {
+            background: rgba(255, 255, 255, .7);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Glow animation for hero */
+        @keyframes glow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+
+            50% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        .animate-glow {
+            animation: glow 4s ease-in-out infinite;
+        }
+
+        /* Accordion styling */
+        .accordion-toggle {
+            position: relative;
+        }
+
+        .accordion-toggle::after {
+            content: '\25BC'; /* Down arrow */
+            font-size: 1rem;
+            position: absolute;
+            right: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-toggle.active::after {
+            content: '\25B2'; /* Up arrow */
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+        }
+    </style>
+</head>
+
+<body
+    class="text-[#333] bg-[radial-gradient(1200px_600px_at_80%-10%,rgba(184,142,47,0.12),transparent),radial-gradient(900px_500px_at-10%_10%,rgba(184,142,47,0.08),transparent)]">
+
+    <!-- Top Bar -->
+    <div class="w-full bg-brand-900 text-white text-sm">
+        <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
+            <p class="opacity-90">Gratis konsultasi untuk pembelian properti di atas Rp500 juta</p>
+            <a href="shop.html#produk" class="underline hover:no-underline">Lihat Properti Sekarang</a>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <header
+        class="sticky top-0 z-50 bg-white/80 backdrop-blur supports-[backdrop-filter]:glass border-b border-[#E5E5E5]">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="#" class="flex items-center gap-2">
+                    <img src="../../public/images/arthadaya_group.jpg" alt="Arthadaya Logo"
+                        class="h-10 w-10 rounded-xl shadow-soft">
+                    <span class="text-xl font-extrabold tracking-tight">Arthadaya</span>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="index.html" class="text-gray-600 hover:text-brand-700 transition">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-brand-700 transition">Shop</a>
+                    <a href="about.html" class="text-gray-600 hover:text-brand-700 transition">About</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-brand-700 transition">Contact</a>
+                    <a href="faq.html" class="text-gray-600 hover:text-brand-700 transition font-semibold">FAQ</a>
+                </nav>
+
+                <div class="hidden md:flex items-center gap-3">
+                    <button
+                        class="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-[#E5E5E5] hover:border-brand-600 hover:text-brand-700 transition shadow-soft">
+                        <span>Cari</span>
+                    </button>
+                    <a href="shop.html#produk"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-700 text-white hover:bg-brand-800 transition shadow-soft">
+                        <span>Belanja</span>
+                    </a>
+                </div>
+
+                <button id="mobileBtn"
+                    class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-xl border border-[#E5E5E5]">
+                    <span>☰</span>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden hidden pt-3 pb-4">
+                <nav class="flex flex-col gap-2">
+                    <a href="index.html"
+                        class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700">Home</a>
+                    <a href="shop.html"
+                        class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700">Shop</a>
+                    <a href="about.html"
+                        class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700">About</a>
+                    <a href="contact.html"
+                        class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700">Contact</a>
+                    <a href="faq.html"
+                        class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7] text-gray-600 hover:text-brand-700 font-semibold">FAQ</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="beranda" class="relative overflow-hidden h-72 flex items-center justify-center bg-cover bg-center"
+        style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&h=300&auto=format&fit=crop');"
+        onerror="this.style.backgroundImage='url(images/fallback-faq.jpg)'">
+        <div class="absolute inset-0 bg-brand-900/50"></div>
+        <div class="relative z-10 text-center">
+            <h2
+                class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-brand-200 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)] animate-glow">
+                FAQ
+            </h2>
+            <div class="text-sm text-white/90 rounded-lg shadow-soft flex items-center gap-1 justify-center mt-3">
+                <a href="index.html"
+                    class="text-gray-100 hover:text-brand-400 hover:underline cursor-pointer transition">Home</a>
+                <span class="text-yellow-500">&gt;</span>
+                <span class="text-brand-400 font-semibold">FAQ</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="max-w-4xl mx-auto px-4 py-16 md:py-24">
+        <div class="text-center max-w-xl mx-auto mb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-brand-700">Pertanyaan yang Sering Diajukan</h2>
+            <p class="text-gray-600 md:text-lg mt-4">
+                Temukan jawaban atas pertanyaan umum tentang pembelian properti, legalitas, konsultasi, dan layanan
+                kami. Jika Anda memiliki pertanyaan lain, hubungi kami!
+            </p>
+        </div>
+
+        <div class="space-y-4">
+            <!-- FAQ Item 1 -->
+            <div class="glass rounded-2xl shadow-soft border border-white/60 overflow-hidden">
+                <button
+                    class="accordion-toggle w-full flex justify-between items-center p-6 text-left text-brand-700 font-semibold"
+                    aria-expanded="false">
+                    <span>Bagaimana proses pembelian properti dengan Arthadaya?</span>
+                </button>
+                <div class="accordion-content max-h-0 opacity-0 overflow-hidden px-6 pb-0 text-gray-600">
+                    <p class="pb-6">
+                        Proses pembelian dimulai dengan konsultasi gratis dengan tim kami untuk memahami kebutuhan Anda.
+                        Selanjutnya, kami akan membantu Anda memilih properti, melakukan kunjungan lokasi, dan mengurus
+                        dokumen legal seperti SHM. Pembayaran dapat dilakukan secara tunai atau cicilan, sesuai opsi
+                        yang tersedia.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="glass rounded-2xl shadow-soft border border-white/60 overflow-hidden">
+                <button
+                    class="accordion-toggle w-full flex justify-between items-center p-6 text-left text-brand-700 font-semibold"
+                    aria-expanded="false">
+                    <span>Apakah semua properti memiliki Sertifikat Hak Milik (SHM)?</span>
+                </button>
+                <div class="accordion-content max-h-0 opacity-0 overflow-hidden px-6 pb-0 text-gray-600">
+                    <p class="pb-6">
+                        Ya, semua properti yang ditawarkan oleh Arthadaya dilengkapi dengan Sertifikat Hak Milik (SHM)
+                        yang sah dan bebas sengketa. Kami juga menyediakan dukungan hukum untuk memastikan transaksi
+                        Anda aman.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="glass rounded-2xl shadow-soft border border-white/60 overflow-hidden">
+                <button
+                    class="accordion-toggle w-full flex justify-between items-center p-6 text-left text-brand-700 font-semibold"
+                    aria-expanded="false">
+                    <span>Bisakah saya mendapatkan konsultasi gratis sebelum membeli?</span>
+                </button>
+                <div class="accordion-content max-h-0 opacity-0 overflow-hidden px-6 pb-0 text-gray-600">
+                    <p class="pb-6">
+                        Tentu saja! Kami menawarkan konsultasi gratis untuk membantu Anda memahami opsi properti,
+                        lokasi, dan proses pembelian. Hubungi kami melalui telepon (+62 812-3456-7890) atau formulir
+                        kontak untuk menjadwalkan konsultasi.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="glass rounded-2xl shadow-soft border border-white/60 overflow-hidden">
+                <button
+                    class="accordion-toggle w-full flex justify-between items-center p-6 text-left text-brand-700 font-semibold"
+                    aria-expanded="false">
+                    <span>Apa saja pilihan pembayaran yang tersedia?</span>
+                </button>
+                <div class="accordion-content max-h-0 opacity-0 overflow-hidden px-6 pb-0 text-gray-600">
+                    <p class="pb-6">
+                        Kami menyediakan opsi pembayaran tunai, cicilan melalui bank mitra, dan skema pembayaran
+                        fleksibel lainnya. Detail dapat dibahas selama konsultasi dengan tim kami untuk menyesuaikan
+                        dengan kebutuhan Anda.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div class="glass rounded-2xl shadow-soft border border-white/60 overflow-hidden">
+                <button
+                    class="accordion-toggle w-full flex justify-between items-center p-6 text-left text-brand-700 font-semibold"
+                    aria-expanded="false">
+                    <span>Bagaimana Arthadaya memastikan kualitas properti?</span>
+                </button>
+                <div class="accordion-content max-h-0 opacity-0 overflow-hidden px-6 pb-0 text-gray-600">
+                    <p class="pb-6">
+                        Kami menggunakan material premium dan bekerja dengan kontraktor terpercaya untuk memastikan
+                        kualitas konstruksi. Setiap properti juga melalui pemeriksaan kualitas ketat sebelum diserahkan
+                        kepada pembeli.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 6 -->
+            <div class="glass rounded-2xl shadow-soft border border-white/60 overflow-hidden">
+                <button
+                    class="accordion-toggle w-full flex justify-between items-center p-6 text-left text-brand-700 font-semibold"
+                    aria-expanded="false">
+                    <span>Apakah ada garansi untuk properti yang dibeli?</span>
+                </button>
+                <div class="accordion-content max-h-0 opacity-0 overflow-hidden px-6 pb-0 text-gray-600">
+                    <p class="pb-6">
+                        Ya, kami menawarkan garansi hingga 2 tahun untuk masalah struktural pada properti. Hubungi tim
+                        layanan pelanggan kami untuk informasi lebih lanjut tentang ketentuan garansi.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 7 -->
+            <div class="glass rounded-2xl shadow-soft border border-white/60 overflow-hidden">
+                <button
+                    class="accordion-toggle w-full flex justify-between items-center p-6 text-left text-brand-700 font-semibold"
+                    aria-expanded="false">
+                    <span>Bagaimana cara menjadwalkan kunjungan ke lokasi properti?</span>
+                </button>
+                <div class="accordion-content max-h-0 opacity-0 overflow-hidden px-6 pb-0 text-gray-600">
+                    <p class="pb-6">
+                        Anda dapat menjadwalkan kunjungan melalui formulir kontak di situs kami atau menghubungi hotline
+                        kami (+62 274-123-4567). Tim kami akan mengatur waktu yang sesuai untuk Anda.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 8 -->
+            <div class="glass rounded-2xl shadow-soft border border-white/60 overflow-hidden">
+                <button
+                    class="accordion-toggle w-full flex justify-between items-center p-6 text-left text-brand-700 font-semibold"
+                    aria-expanded="false">
+                    <span>Apakah Arthadaya melayani pembelian di luar Yogyakarta?</span>
+                </button>
+                <div class="accordion-content max-h-0 opacity-0 overflow-hidden px-6 pb-0 text-gray-600">
+                    <p class="pb-6">
+                        Ya, kami memiliki properti di lebih dari 10 kota di Indonesia, termasuk Jakarta, Surabaya, dan
+                        Bali. Lihat katalog kami di halaman Shop atau hubungi kami untuk informasi lebih lanjut.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center mt-12">
+            <p class="text-gray-600 md:text-lg mb-4">Masih ada pertanyaan? Kami siap membantu!</p>
+            <a href="contact.html"
+                class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-700 text-white hover:bg-brand-800 transition shadow-soft font-semibold">
+                Hubungi Kami
+            </a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="bg-brand-50 py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 grid sm:grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="bg-white p-6 rounded-2xl shadow-soft hover:-translate-y-1 transition">
+                <div class="h-12 w-12 rounded-xl bg-brand-100 flex items-center justify-center mb-4 mx-auto">
+                    <span class="text-brand-700 text-xl">📞</span>
+                </div>
+                <p>
+                    <strong class="text-brand-700 font-semibold">Konsultasi Gratis</strong><br />
+                    <span class="text-gray-600 text-sm">Dapatkan saran properti tanpa biaya</span>
+                </p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-soft hover:-translate-y-1 transition">
+                <div class="h-12 w-12 rounded-xl bg-brand-100 flex items-center justify-center mb-4 mx-auto">
+                    <span class="text-brand-700 text-xl">🛡️</span>
+                </div>
+                <p>
+                    <strong class="text-brand-700 font-semibold">Legalitas Terjamin</strong><br />
+                    <span class="text-gray-600 text-sm">SHM lengkap dan bebas sengketa</span>
+                </p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-soft hover:-translate-y-1 transition">
+                <div class="h-12 w-12 rounded-xl bg-brand-100 flex items-center justify-center mb-4 mx-auto">
+                    <span class="text-brand-700 text-xl">📍</span>
+                </div>
+                <p>
+                    <strong class="text-brand-700 font-semibold">Lokasi Strategis</strong><br />
+                    <span class="text-gray-600 text-sm">Dekat fasilitas umum dan transportasi</span>
+                </p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-soft hover:-translate-y-1 transition">
+                <div class="h-12 w-12 rounded-xl bg-brand-100 flex items-center justify-center mb-4 mx-auto">
+                    <span class="text-brand-700 text-xl">🏆</span>
+                </div>
+                <p>
+                    <strong class="text-brand-700 font-semibold">Layanan 24/7</strong><br />
+                    <span class="text-gray-600 text-sm">Dukungan pelanggan responsif</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-[#E5E5E5] bg-white">
+        <div class="max-w-7xl mx-auto px-4 py-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center gap-2">
+                    <span
+                        class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white">F</span>
+                    <span class="text-xl font-extrabold">Arthadaya</span>
+                </div>
+                <p class="mt-3 text-gray-600">Menciptakan hunian nyaman dengan properti minimalis dan kualitas maksimal.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-3">Kategori</h4>
+                <ul class="space-y-2 text-gray-600">
+                    <li><a href="shop.html#produk" class="hover:text-brand-700">Rumah</a></li>
+                    <li><a href="shop.html#produk" class="hover:text-brand-700">Tanah</a></li>
+                    <li><a href="shop.html#produk" class="hover:text-brand-700">Paviliun</a></li>
+                    <li><a href="shop.html#produk" class="hover:text-brand-700">Apartemen</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-3">Bantuan</h4>
+                <ul class="space-y-2 text-gray-600">
+                    <li><a href="faq.html" class="hover:text-brand-700">FAQ</a></li>
+                    <li><a href="#" class="hover:text-brand-700">Kebijakan Pembelian</a></li>
+                    <li><a href="#" class="hover:text-brand-700">Konsultasi</a></li>
+                    <li><a href="contact.html" class="hover:text-brand-700">Kontak</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-3">Ikuti Kami</h4>
+                <div class="flex items-center gap-3 text-gray-600">
+                    <a href="#" aria-label="Instagram"
+                        class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#E5E5E5] hover:border-brand-600 hover:text-brand-700 transition">
+                        <span>📷</span>
+                    </a>
+                    <a href="#" aria-label="Facebook"
+                        class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#E5E5E5] hover:border-brand-600 hover:text-brand-700 transition">
+                        <span>📘</span>
+                    </a>
+                    <a href="#" aria-label="Twitter"
+                        class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#E5E5E5] hover:border-brand-600 hover:text-brand-700 transition">
+                        <span>🐦</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-[#E5E5E5]">
+            <div
+                class="max-w-7xl mx-auto px-4 py-6 text-sm text-gray-500 flex flex-col md:flex-row items-center justify-between gap-2">
+                <p>© <span id="year"></span> Arthadaya. All rights reserved.</p>
+                <p>Dibuat dengan <span class="text-brand-700 font-semibold">Tailwind CSS</span>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        const mbBtn = document.getElementById('mobileBtn');
+        const mbMenu = document.getElementById('mobileMenu');
+        mbBtn?.addEventListener('click', () => {
+            mbMenu.classList.toggle('hidden');
+        });
+
+        // Dynamic year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Fallback image handling
+        document.querySelectorAll('img').forEach(img => {
+            img.onerror = () => {
+                img.src = 'images/fallback-faq.jpg';
+            };
+        });
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+                // Close all other accordions
+                document.querySelectorAll('.accordion-content').forEach(otherContent => {
+                    if (otherContent !== content) {
+                        otherContent.style.maxHeight = '0';
+                        otherContent.style.opacity = '0';
+                        otherContent.previousElementSibling.classList.remove('active');
+                    }
+                });
+
+                // Toggle current accordion
+                if (isOpen) {
+                    content.style.maxHeight = '0';
+                    content.style.opacity = '0';
+                    button.classList.remove('active');
+                } else {
+                    content.style.maxHeight = `${content.scrollHeight}px`;
+                    content.style.opacity = '1';
+                    button.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

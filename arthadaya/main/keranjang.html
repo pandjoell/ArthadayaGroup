@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart - Arthadaya</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white font-sans text-gray-800">
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur supports-[backdrop-filter]:glass border-b border-[#E5E5E5]">
+    <div class="max-w-7xl mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <a href="#" class="flex items-center gap-2">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white shadow-soft">F</span>
+          <span class="text-xl font-extrabold tracking-tight">Arthadaya</span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="index.html" class="text-gray-600 hover:text-brand-700 transition">Home</a>
+          <a href="shop.html" class="text-gray-600 hover:text-brand-700 transition">Shop</a>
+          <a href="about.html" class="text-gray-600 hover:text-brand-700 transition">About</a>
+          <a href="contact.html" class="text-gray-600 hover:text-brand-700 transition">Contact</a>
+          <a href="#faq" class="text-gray-600 hover:text-brand-700 transition">FAQ</a>
+        </nav>
+
+        <div class="hidden md:flex items-center gap-3">
+          <button class="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-[#E5E5E5] hover:border-brand-600 hover:text-brand-700 transition">
+            <i data-feather="search" class="w-4 h-4"></i>
+            <span>Cari</span>
+          </button>
+          <a href="#produk" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-700 text-white hover:bg-brand-800 transition shadow-soft">
+            <i data-feather="shopping-bag" class="w-4 h-4"></i>
+            <span>Belanja</span>
+          </a>
+        </div>
+
+        <button id="mobileBtn" class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-xl border border-[#E5E5E5]">
+          <i data-feather="menu"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="md:hidden hidden pt-3 pb-4">
+        <nav class="flex flex-col gap-2">
+          <a href="#beranda" class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7]">Beranda</a>
+          <a href="#produk" class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7]">Produk</a>
+          <a href="#keunggulan" class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7]">Keunggulan</a>
+          <a href="#testimoni" class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7]">Testimoni</a>
+          <a href="#faq" class="px-3 py-2 rounded-lg hover:bg-[#F9F1E7]">FAQ</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Hero Section -->
+  <section class="relative h-72 flex items-center justify-center bg-cover bg-center"
+    style="background-image: url('https://picsum.photos/1200/300');">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <!-- Transparent Heading (no box) -->
+    <div class="relative z-10 text-center">
+      <h2
+        class="text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-300 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)] animate-glow">
+        Cart
+      </h2>
+      <p class="text-gray-100 text-lg md:text-xl mt-3 tracking-wider">
+        Home <span class="text-yellow-400 font-semibold">&gt;</span> <span class="text-white">Cart</span>
+      </p>
+    </div>
+  </section>
+  <style>
+    @keyframes glow {
+
+      0%,
+      100% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+      }
+
+      50% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6);
+      }
+    }
+
+    .animate-glow {
+      animation: glow 4s ease-in-out infinite;
+    }
+  </style>
+
+  <!-- Cart Table -->
+  <section class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
+    <!-- Product Table -->
+    <div class="md:col-span-2">
+      <div class="overflow-x-auto border rounded-xl shadow-sm">
+        <table class="min-w-full text-sm">
+          <thead class="bg-[#fdf6ec] text-gray-800 text-left uppercase tracking-wider text-xs">
+            <tr>
+              <th class="p-4">Product</th>
+              <th class="p-4">Price</th>
+              <th class="p-4">Quantity</th>
+              <th class="p-4">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <tr class="border-t hover:bg-gray-50 transition">
+              <td class="p-4 flex items-center space-x-4">
+                <img src="https://picsum.photos/seed/sofa/80" alt="Asgard Sofa"
+                  class="w-20 h-20 object-cover rounded-md shadow-sm" />
+                <span class="font-medium text-gray-700">Asgard Sofa</span>
+              </td>
+              <td class="p-4 text-[#d4af37] font-semibold">Rp 250.000</td>
+              <td class="p-4">
+                <input type="number" value="1" min="1"
+                  class="w-14 border-gray-300 rounded-md text-center shadow-sm focus:ring-[#d4af37] focus:border-[#d4af37]" />
+              </td>
+              <td class="p-4 flex items-center justify-between">
+                <span class="text-gray-800 font-semibold">Rp 250.000</span>
+                <button class="ml-4 text-red-500 hover:text-red-700 transition-colors" title="Remove item">
+                  🗑️
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <!-- Cart Totals -->
+    <div class="bg-[#fdf6ec] p-6 rounded-xl border border-[#f5e1b9] shadow-sm">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Cart Totals</h2>
+
+      <div class="flex justify-between text-sm text-gray-600 mb-2">
+        <span>Subtotal</span>
+        <span>Rp 250.000</span>
+      </div>
+
+      <div class="flex justify-between font-semibold text-lg text-[#d4af37] mb-4">
+        <span>Total</span>
+        <span>Rp 250.000</span>
+      </div>
+
+      <button class="w-full bg-[#d4af37] text-white py-2 rounded-md font-semibold hover:bg-[#c2992f] transition">
+        Check Out
+      </button>
+    </div>
+
+  </section>
+
+  <!-- Benefits -->
+  <section class="bg-[#fff9e6] py-16">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
+
+      <div
+        class="border border-[#f1e5c0] rounded-xl shadow-md p-6 hover:shadow-lg transition duration-300 space-y-3 bg-white">
+        <div class="text-4xl text-[#d4af37]">🏆</div>
+        <p class="font-semibold text-gray-900 text-lg">High Quality</p>
+        <p class="text-sm text-gray-600">Crafted from top materials</p>
+      </div>
+
+      <div
+        class="border border-[#f1e5c0] rounded-xl shadow-md p-6 hover:shadow-lg transition duration-300 space-y-3 bg-white">
+        <div class="text-4xl text-[#d4af37]">✔️</div>
+        <p class="font-semibold text-gray-900 text-lg">Warranty Protection</p>
+        <p class="text-sm text-gray-600">Over 2 years warranty</p>
+      </div>
+
+      <div
+        class="border border-[#f1e5c0] rounded-xl shadow-md p-6 hover:shadow-lg transition duration-300 space-y-3 bg-white">
+        <div class="text-4xl text-[#d4af37]">🚚</div>
+        <p class="font-semibold text-gray-900 text-lg">Free Shipping</p>
+        <p class="text-sm text-gray-600">On orders over $150</p>
+      </div>
+
+      <div
+        class="border border-[#f1e5c0] rounded-xl shadow-md p-6 hover:shadow-lg transition duration-300 space-y-3 bg-white">
+        <div class="text-4xl text-[#d4af37]">🎧</div>
+        <p class="font-semibold text-gray-900 text-lg">24/7 Support</p>
+        <p class="text-sm text-gray-600">Dedicated customer care</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <!-- Footer -->
+  <footer class="bg-white text-gray-800 py-14 mt-16 border-t border-gray-200">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-sm">
+
+      <!-- Brand Info -->
+      <div>
+        <h3 class="text-2xl font-bold text-[#d4af37] mb-4">Arthadaya.</h3>
+        <p class="text-gray-700 leading-relaxed">
+          400 University Drive Suite 200<br />
+          Coral Gables, FL 33134 USA
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h4 class="font-semibold text-lg text-gray-900 mb-4">Links</h4>
+        <ul class="space-y-2 text-gray-700">
+          <li><a href="index.html" class="hover:text-[#d4af37] transition">Home</a></li>
+          <li><a href="shop.html" class="hover:text-[#d4af37] transition">Shop</a></li>
+          <li><a href="about.html" class="hover:text-[#d4af37] transition">About</a></li>
+          <li><a href="contact.html" class="hover:text-[#d4af37] transition">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Help -->
+      <div>
+        <h4 class="font-semibold text-lg text-gray-900 mb-4">Help</h4>
+        <ul class="space-y-2 text-gray-700">
+          <li><a href="#" class="hover:text-[#d4af37] transition">Payment Options</a></li>
+          <li><a href="#" class="hover:text-[#d4af37] transition">Returns</a></li>
+          <li><a href="#" class="hover:text-[#d4af37] transition">Privacy Policies</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div>
+        <h4 class="font-semibold text-lg text-gray-900 mb-4">Newsletter</h4>
+        <form class="flex flex-col sm:flex-row items-center gap-2">
+          <input type="email" placeholder="Enter your email"
+            class="flex-1 px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#d4af37] outline-none text-sm" />
+          <button type="submit"
+            class="bg-[#d4af37] hover:bg-[#c4a035] transition text-white px-5 py-2 rounded-md text-sm font-medium">
+            Subscribe
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </footer>
+  <div class="text-center text-xs text-gray-500 mt-8">&copy; 2025 Arthadaya. All rights reserved.</div>
+
+
+
+
+</body>
+
+</html>
