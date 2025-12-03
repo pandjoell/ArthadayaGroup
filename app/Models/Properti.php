@@ -33,10 +33,4 @@ class Properti extends Model
     {
         return $this->hasMany(PropertiSpesifikasi::class, 'properti_id');
     }
-
-    // pembuat properti
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
 }

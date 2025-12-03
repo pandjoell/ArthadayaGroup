@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jasas', function (Blueprint $table) {
+        Schema::create('kategori_jasas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->text('deskripsi')->nullable();
-            $table->decimal('harga', 15, 2);
-            $table->unsignedBigInteger('created_by');
+            $table->foreignId('jasa_id')->constrained('jasas')->onDelete('cascade');
+            $table->foreignId('kategori_id')->constrained('kategoris')->onDelete('cascade');
             $table->timestamps();
-
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->unique(['jasa_id', 'kategori_id']);
         });
     }
 
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jasas');
+        //
     }
 };

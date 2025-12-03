@@ -16,11 +16,9 @@ return new class extends Migration
             $table->string('nama');
             $table->text('deskripsi')->nullable();
             $table->decimal('harga', 15, 2);
-            $table->unsignedBigInteger('kategori_id')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->timestamps();
 
-            $table->foreign('kategori_id')->references('id')->on('kategoris')->nullOnDelete();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
         });
     }

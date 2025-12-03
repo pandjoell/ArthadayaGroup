@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('kendaraan_spesifikasis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('kendaraan_id');
+            $table->foreignId('kendaraan_id')->constrained('kendaraans')->onDelete('cascade');
             $table->string('key');
             $table->string('value');
             $table->timestamps();
-
-            $table->foreign('kendaraan_id')->references('id')->on('kendaraans')->onDelete('cascade');
         });
     }
 

@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('jasa_spesifikasis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('jasa_id');
+            $table->foreignId('jasa_id')->constrained('jasas')->onDelete('cascade');
             $table->string('key');
             $table->string('value');
             $table->timestamps();
-
-            $table->foreign('jasa_id')->references('id')->on('jasas')->onDelete('cascade');
         });
     }
 
